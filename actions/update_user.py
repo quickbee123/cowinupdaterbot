@@ -79,7 +79,7 @@ def send_update_to_user(bot,db,data):
         interval = user[4]
         difference = (now - last_sent).seconds / 60
 
-        if difference > interval:
+        if difference > interval*60:
 
             id = user[1]
             districts = db.get_districts_for_user(id)
@@ -159,7 +159,7 @@ def format_message(centers):
         else:
             text=text+add_text    
 
-        break
+        
 
     text = text+"Schedule Vaccine : cowin.gov.in"  
 

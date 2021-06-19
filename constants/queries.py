@@ -21,3 +21,5 @@ REMOVE_DISTRICT = 'DELETE FROM district WHERE user_id=%(id)s and district_id=%(d
 REMOVE_PINCODE = 'DELETE FROM pincode WHERE user_id=%(id)s and pincode_num=%(pincode)s'
 
 GET_ENTRIES_COUNT = 'SELECT (SELECT COUNT(*) FROM district WHERE user_id=%(id)s) + (SELECT COUNT(*) FROM pincode WHERE user_id=%(id)s)'
+
+DELETE_DETAILS = 'DELETE FROM district WHERE user_id=%(id)s;DELETE FROM pincode WHERE user_id=%(id)s;'

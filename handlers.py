@@ -3,6 +3,7 @@ from telegram.ext import Handler,CommandHandler, ConversationHandler, Filters, M
 
 from actions.start import start
 from actions.show import show
+from actions.delete import delete
 from actions.entry import *
 from actions.preference import *
 from actions.remove import *
@@ -13,7 +14,8 @@ from constants import states
 handlers = {
     CommandHandler: [
         ({"command":["start","help","h"],"callback":start},),
-        ({"command":["show"],"callback":show},)
+        ({"command":["show"],"callback":show},),
+         ({"command":["delete"],"callback":delete},)
     ],
     ConversationHandler: [
         ({

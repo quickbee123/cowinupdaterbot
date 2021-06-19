@@ -118,5 +118,11 @@ class Database():
         cur = self.conn.cursor()
         cur.execute(queries.REMOVE_PINCODE,{"id":id,"pincode":pincode})
         self.conn.commit()
-        cur.close()       
+        cur.close()    
+
+    def delete_details(self,id):
+        cur = self.conn.cursor()
+        cur.execute(queries.DELETE_DETAILS,{"id":id})
+        self.conn.commit()
+        cur.close()     
         

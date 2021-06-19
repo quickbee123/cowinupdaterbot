@@ -79,7 +79,7 @@ def send_update_to_user(bot,db,data):
         interval = user[4]
         difference = (now - last_sent).seconds / 60
 
-        if difference > interval*60:
+        if difference > interval:
 
             id = user[1]
             districts = db.get_districts_for_user(id)
@@ -151,6 +151,7 @@ def format_message(centers):
         f'{center["session"]["vaccine"]} | {center["session"]["min_age_limit"]}+ | {center["fee_type"]}\n'
         f'DATE : {center["session"]["date"]}\n'
         f'DOSE 1 : {center["session"]["available_capacity_dose1"]} | DOSE 2 : {center["session"]["available_capacity_dose2"]}\n\n')
+        
 
         if len(text+add_text) > 4096:
             text=text+ "<i>Some results are not shown due to message length limit. Add entries more specifically to get better results</i>\n\n"
@@ -158,6 +159,7 @@ def format_message(centers):
         else:
             text=text+add_text    
 
+        break
 
     text = text+"Schedule Vaccine : cowin.gov.in"  
 

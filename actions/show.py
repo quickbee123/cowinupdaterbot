@@ -19,7 +19,7 @@ def show(update, context):
 
     for pincode in pincodes:
         count+=1
-        name = str(count) + f". <code>{str(pincode[0])}</code>" + " (Pincode)\n"
+        name = str(count) + f". <i>{str(pincode[0])}</i>" + " (Pincode)\n"
         data = data+name
 
     if count == 0:
@@ -43,4 +43,4 @@ def show(update, context):
                  f'Update Interval : Every {pref[4]} hour\n\n')
  
     
-    update.message.reply_text(data+pref_text+"\nSend /add to add an entry\nSend /remove to remove an entry",parse_mode="HTML")
+    update.message.reply_text(data+pref_text+"Send /add to add an entry\nSend /remove to remove an entry",parse_mode="HTML")

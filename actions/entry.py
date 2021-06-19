@@ -1,10 +1,19 @@
 from telegram.ext import ConversationHandler
 from actions.inline_keyboard import keyboard
-from constants import buttons,states,API_data
+from constants import buttons,states,API_data_states,API_data_districts
 
 
 
 def get_searchby(update,context):
+
+    db = context.bot_data["database"]
+    id = update.message.from_user.id
+    count = db.get_entries_count(id)[0]
+
+    if count == 5:
+        update.message.reply_text('You can add only 5 entries maximum. Remove an entry and add a new one\n\nSend /remove to remove an entry')
+        return ConversationHandler.END   
+
 
     reply_markup = keyboard(buttons.SEARCHBY_BUTTONS,2)
     update.message.reply_text('Choose region to get updates on vaccine availability\nSend /cancel to cancel')
@@ -19,10 +28,10 @@ def get_state(update,context):
     query = update.callback_query
     query.answer()
 
-    data = API_data.DATA
+    states_data = API_data_states.states_data
     state_buttons={}
 
-    for id,state in data.items():
+    for id,state in states_data.items():
         state_buttons[state["state_name"]]=id
 
     reply_markup = keyboard(state_buttons,3)
@@ -38,11 +47,13 @@ def get_district(update,context):
     query.answer()
 
     state_id = query.data
-    districts = API_data.DATA[state_id]["districts"]
+    states_data = API_data_states.states_data
+    districts = API_data_districts.districts_data
+    district_ids = states_data[state_id]["districts"]
     district_buttons={}
 
-    for district in districts:
-        district_buttons[district["district_name"]]= str(district["district_id"])
+    for id in district_ids:
+        district_buttons[districts[id]]= id
 
     reply_markup = keyboard(district_buttons,3)
     query.edit_message_text('Choose district',reply_markup=reply_markup)  
@@ -64,8 +75,19 @@ def get_pincode(update,context):
 
 def set_pincode(update,context):
 
-    update.message.reply_text('Entry added successfully')  
-    return ConversationHandler.END  
+    
+    pincode = update.message.text
+    if len(pincode) != 6:
+        update.message.reply_text('Please enter a valid pincode')  
+        return states.SETPINCODE
+
+    else:
+        db = context.bot_data["database"]
+        id = update.message.from_user.id
+        db.add_entry(2,id,int(pincode))
+
+        update.message.reply_text('Entry added successfully')  
+        return ConversationHandler.END  
 
 
 
@@ -73,6 +95,11 @@ def set_district(update,context):
 
     query = update.callback_query
     query.answer()
+
+    db = context.bot_data["database"]
+    id = update.effective_user.id
+    district_id = int(query.data)
+    db.add_entry(1,id,district_id)
 
     query.edit_message_text('Entry added successfully')  
     return ConversationHandler.END      

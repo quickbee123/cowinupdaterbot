@@ -1,6 +1,9 @@
+from os import name
 from telegram.ext import Updater
 from db.database import Database
 import logging
+
+from actions.update_user import update
 
 
 logging.basicConfig(
@@ -16,6 +19,7 @@ class Server:
         self.updater = Updater(token)
         self.dispatcher = self.updater.dispatcher
         self.dispatcher.bot_data["database"] = Database(db_url)
+        self.dispatcher.job_queue.run_repeating(update,900,context=self.dispatcher.bot_data["database"],name="update_user")
         self.handler(handlers)
 
 

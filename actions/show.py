@@ -1,4 +1,3 @@
-import logging
 from constants.queries import UPDATE_LAST_SENT
 from constants import API_data_districts
 
@@ -36,7 +35,7 @@ def show(update, context):
  
 
     
-    pref_text = ('\n\n<b>Preferences</b>\n\n'
+    pref_text = ('\n<b>Preferences</b>\n\n'
                  f'Age  : {AGE[pref[0]]}\n'
                  f'Dose : {DOSE[pref[1]]}\n'
                  f'Vaccine : {VACCINE[pref[2]]}\n'
@@ -44,4 +43,4 @@ def show(update, context):
                  f'Update Interval : Every {pref[4]} hour\n\n')
  
     
-    update.message.reply_text(data+pref_text+"\n\nSend /add to add an entry\nSend /remove to remove an entry",parse_mode="HTML")
+    update.message.reply_text(data+pref_text+"\nSend /add to add an entry\nSend /remove to remove an entry",parse_mode="HTML")

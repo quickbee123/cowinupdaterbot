@@ -101,7 +101,7 @@ def set_district(update,context):
     district_id = int(query.data)
     db.add_entry(1,id,district_id)
 
-    query.edit_message_text('Entry added successfully')  
+    query.edit_message_text('Entry added successfully!\n\nSend /add to add another entry\nSend /show to see all entries')  
     return ConversationHandler.END      
 
 

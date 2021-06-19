@@ -48,7 +48,7 @@ def remove_entry(update,context):
        db.remove_district(id,int(query.data))     
 
 
-    query.edit_message_text('Removed Successfully!!')
+    query.edit_message_text('Removed Successfully!\n\nSend /show to see all entries')
 
      
     return ConversationHandler.END

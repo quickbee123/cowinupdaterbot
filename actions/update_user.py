@@ -1,15 +1,9 @@
 from constants import api
 import requests
-import logging
 from datetime import datetime
 import time
 import pytz
 
-logging.basicConfig(
-format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
-)
-
-logger = logging.getLogger(__name__)
 
 DEFAULT_MSG_DATA_LEN = 66
 
@@ -155,7 +149,8 @@ def format_message(centers):
         add_text = (f'<b>{center["name"]}</b>\n'
         f'{center["district_name"]}, {center["pincode"]}\n'
         f'{center["session"]["vaccine"]} | {center["session"]["min_age_limit"]}+ | {center["fee_type"]}\n'
-        f'DATE : {center["session"]["date"]} | DOSE 1 : {center["session"]["available_capacity_dose1"]} | DOSE 2 : {center["session"]["available_capacity_dose2"]}\n\n')
+        f'DATE : {center["session"]["date"]}\n'
+        f'DOSE 1 : {center["session"]["available_capacity_dose1"]} | DOSE 2 : {center["session"]["available_capacity_dose2"]}\n\n')
 
         if len(text+add_text) > 4096:
             text=text+ "<i>Some results are not shown due to message length limit. Add entries more specifically to get better results</i>\n\n"

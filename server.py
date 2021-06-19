@@ -19,7 +19,7 @@ class Server:
         self.updater = Updater(token)
         self.dispatcher = self.updater.dispatcher
         self.dispatcher.bot_data["database"] = Database(db_url)
-        self.dispatcher.job_queue.run_repeating(update,900,context=self.dispatcher.bot_data["database"],name="update_user")
+        self.dispatcher.job_queue.run_repeating(update,900,first=1,context=self.dispatcher.bot_data["database"],name="update_user")
         self.handler(handlers)
 
 

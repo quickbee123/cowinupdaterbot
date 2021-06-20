@@ -92,17 +92,10 @@ class Database():
         pincodes = cur.fetchall()
         return pincodes 
 
-    def get_last_msg_id(self,id):
-        cur = self.conn.cursor()
-        cur.execute(queries.GET_LAST_MSG_ID,{"id":id})
-        msg_id = cur.fetchone()
-        cur.close()  
-        return msg_id  
-
-    def update_last_sent(self,id,time,msg_id):
+    def update_last_sent(self,id,time):
 
         cur = self.conn.cursor()
-        cur.execute(queries.UPDATE_LAST_SENT,{"id":id,"time":time,"msg_id":msg_id})
+        cur.execute(queries.UPDATE_LAST_SENT,{"id":id,"time":time})
         self.conn.commit()
         cur.close()   
 

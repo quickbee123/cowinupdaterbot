@@ -29,8 +29,8 @@ FEE_BUTTONS={
 }
 
 INTERVAL_BUTTONS={
+    "Every 30 minutes":"0",
     "Every 1 hour":"1",
-    "Every 6 hours":"6",
-    "Every 12 hours":"12",
-    "Every 24 hours":"24"
+    "Every 12 hours":"2",
+    "Every 24 hours":"3"
 }

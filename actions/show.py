@@ -32,6 +32,7 @@ def show(update, context):
     DOSE = ["Both","1","2"]
     VACCINE = ["Any","Covishield","Covaxine","Sputnik"]
     FEE = ["Both","Free","Paid"]
+    UPDATE_INTERVAL = ["Every 30 minutes","Every 1 hour","Every 12 hours","Every 24 hours"]
  
 
     
@@ -40,7 +41,7 @@ def show(update, context):
                  f'Dose : {DOSE[pref[1]]}\n'
                  f'Vaccine : {VACCINE[pref[2]]}\n'
                  f'Fee : {FEE[pref[3]]}\n'
-                 f'Update Interval : Every {pref[4]} hour\n\n')
+                 f'Update Interval : {UPDATE_INTERVAL[pref[4]]}\n\n')
  
     
     update.message.reply_text(data+pref_text+"Send /add to add an entry\nSend /remove to remove an entry",parse_mode="HTML")

@@ -76,16 +76,17 @@ def send_update_to_user(bot,db,data):
 
         last_sent = user[2]
         now = datetime.now(IST).replace(tzinfo=None)
-        interval = user[4]
+        UPDATE_INTERVAL = [0.5,1,12,24]
+        interval = UPDATE_INTERVAL[user[3]]
         difference = (now - last_sent).seconds / 60
 
-        if difference > interval*60:
+        if difference >= interval*60:
 
             id = user[1]
             districts = db.get_districts_for_user(id)
             pincodes = db.get_pincodes_for_user(id)
 
-            centers = filter_centers(data,districts,pincodes,user[5:9])
+            centers = filter_centers(data,districts,pincodes,user[4:8])
             send_message(db,bot,id,centers,now)
 
 
@@ -132,14 +133,8 @@ def send_message(db,bot,user_id,centers,now):
 
     if len(message) > DEFAULT_MSG_DATA_LEN:
         
-        last_msg_id = db.get_last_msg_id(user_id)[0]
-
-        if last_msg_id != 0:
-            bot.delete_message(user_id,last_msg_id)
-        
-        msg = bot.send_message(user_id,message,parse_mode="HTML")
-        msg_id = msg.message_id
-        db.update_last_sent(user_id,now,msg_id)
+        bot.send_message(user_id,message,parse_mode="HTML")
+        db.update_last_sent(user_id,now)
 
 
 def format_message(centers):

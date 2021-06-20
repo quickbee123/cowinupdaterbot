@@ -6,7 +6,7 @@ def start(update, context):
            '/add - To add an entry\n'
            '/remove - To remove an entry\n'
            '/show - To show all entries\n'
-           '/preference - To set preferneces\n'
+           '/preference - To set preferences\n'
            '/delete - To delete data and stop getting updates\n'
            )
     update.message.reply_text(text)

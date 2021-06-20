@@ -1,2 +1,6 @@
 .env
 venv
+__pycache__
+actions/__pycache__
+constants/__pycache__
+db/__pycache__

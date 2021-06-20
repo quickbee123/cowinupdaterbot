@@ -14,8 +14,7 @@ GET_USERS = 'SELECT * FROM users'
 GET_DISTRICTS_FOR_USER = 'SELECT district_id FROM district WHERE user_id = %(id)s'
 GET_PINCODES_FOR_USER = 'SELECT pincode_num FROM pincode WHERE user_id = %(id)s'
 
-GET_LAST_MSG_ID = 'SELECT last_msg_id from users WHERE user_id=%(id)s'
-UPDATE_LAST_SENT = 'UPDATE users SET last_sent = %(time)s , last_msg_id = %(msg_id)s  WHERE user_id=%(id)s'
+UPDATE_LAST_SENT = 'UPDATE users SET last_sent = %(time)s  WHERE user_id=%(id)s'
 
 REMOVE_DISTRICT = 'DELETE FROM district WHERE user_id=%(id)s and district_id=%(district_id)s'
 REMOVE_PINCODE = 'DELETE FROM pincode WHERE user_id=%(id)s and pincode_num=%(pincode)s'

@@ -114,7 +114,7 @@ def filter_centers(data,districts,pincodes,pref):
     for center in centers:
         if fee==0 or (fee==1 and center["fee_type"]=="Free") or (fee==2 and center["fee_type"]=="Paid"):
             for session in center["sessions"]:
-                if age==0 or (age==1 and session["min_age_limit"]==18) or (age==2 and session["min_age_limit"]==45):
+                if age==0 or (age==1 and session["min_age_limit"]==18) or (age==2 and (session["min_age_limit"]==40 or session["min_age_limit"]==45)):
                     if vaccine==0 or (vaccine==1 and session["vaccine"]=="COVISHIELD") or (vaccine==2 and session["vaccine"]=="COVAXINE") or (vaccine==3 and session["vaccine"]=="SPUTINIK"):
                         if (dose==0 and (session["available_capacity_dose1"]>0 or session["available_capacity_dose2"]>0)) or (dose==1 and session["available_capacity_dose1"]>0) or (dose==2 and session["available_capacity_dose2"]>0):
                             new_center = center

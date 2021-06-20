@@ -5,7 +5,7 @@ SEARCHBY_BUTTONS={
 
 AGE_BUTTONS={
     "18+":"1",
-    "45+":"2",
+    "40+":"2",
     "Both":"0"
 }
 

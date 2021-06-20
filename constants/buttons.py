@@ -17,7 +17,7 @@ DOSE_BUTTONS={
 
 VACCINE_BUTTONS={
     "Covishield":"1",
-    "Covaxine":"2",
+    "Covaxin":"2",
     "Sputnik":"3",
     "Any":"0"
 }

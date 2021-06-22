@@ -1,5 +1,5 @@
 ADD_USER = 'INSERT INTO users (user_id) VALUES (%(id)s) ON CONFLICT DO NOTHING'
-REMOVE_USER = 'DELETE FROM district WHERE user_id=%(id)s; DELETE FROM [pincode] WHERE user_id=%(id)s; DELETE FROM users WHERE user_id=%(id)s'
+REMOVE_USER = 'DELETE FROM district WHERE user_id=%(id)s; DELETE FROM pincode WHERE user_id=%(id)s; DELETE FROM users WHERE user_id=%(id)s'
 
 ADD_DISTRICT = 'INSERT INTO district (user_id,district_id) VALUES (%(user_id)s,%(district_id)s) ON CONFLICT DO NOTHING'
 ADD_PINCODE = 'INSERT INTO pincode (user_id,pincode_num) VALUES (%(user_id)s,%(pincode)s) ON CONFLICT DO NOTHING'

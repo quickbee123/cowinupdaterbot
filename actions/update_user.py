@@ -3,6 +3,7 @@ import requests
 from datetime import datetime
 import time
 import pytz
+import telegram
 
 
 DEFAULT_MSG_DATA_LEN = 66
@@ -135,8 +136,11 @@ def send_message(db,bot,user_id,centers,now):
 
     if len(message) > DEFAULT_MSG_DATA_LEN:
         
-        bot.send_message(user_id,message,parse_mode="HTML")
-        db.update_last_sent(user_id,now)
+        try:
+            bot.send_message(user_id,message,parse_mode="HTML")
+            db.update_last_sent(user_id,now)
+        except telegram.error.Unauthorized:
+            db.remove_user(user_id)
 
 
 def format_message(centers):

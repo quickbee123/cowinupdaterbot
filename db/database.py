@@ -17,7 +17,14 @@ class Database():
         cur = self.conn.cursor()
         cur.execute(queries.ADD_USER,{"id":user_id})
         self.conn.commit()
-        cur.close()   
+        cur.close() 
+
+    def remove_user(self,user_id):
+
+        cur = self.conn.cursor()
+        cur.execute(queries.REMOVE_USER,{"id":user_id})
+        self.conn.commit()
+        cur.close()       
 
     def add_entry(self,table,user_id,val):
 
